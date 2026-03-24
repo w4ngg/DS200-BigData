@@ -1,0 +1,50 @@
+Toy Story (1995)	0-18: NA, 18-35: 4.00, 35-50: 4.50, 50+: NA
+The Shawshank Redemption (1994)	0-18: NA, 18-35: 4.00, 35-50: NA, 50+: NA
+Back to the Future (1985)	0-18: NA, 18-35: 4.00, 35-50: NA, 50+: NA
+Gladiator (2000)	0-18: NA, 18-35: 3.00, 35-50: 3.50, 50+: NA
+Braveheart (1995)	0-18: NA, 18-35: 4.00, 35-50: 4.50, 50+: NA
+Jurassic Park (1993)	0-18: NA, 18-35: 4.00, 35-50: NA, 50+: NA
+The Departed (2006)	0-18: NA, 18-35: 2.00, 35-50: 4.50, 50+: NA
+The Silence of the Lambs (1991)	0-18: NA, 18-35: 3.50, 35-50: 3.50, 50+: NA
+Saving Private Ryan (1998)	0-18: NA, 18-35: 4.00, 35-50: 4.00, 50+: NA
+Avatar (2009)	0-18: NA, 18-35: 4.50, 35-50: 5.00, 50+: NA
+Interstellar (2014)	0-18: NA, 18-35: 3.50, 35-50: 3.50, 50+: NA
+The Prestige (2006)	0-18: NA, 18-35: 4.00, 35-50: 4.00, 50+: NA
+The Avengers (2012)	0-18: NA, 18-35: 3.75, 35-50: NA, 50+: NA
+Memento (2000)	0-18: NA, 18-35: 4.50, 35-50: 3.50, 50+: NA
+The Green Mile (1999)	0-18: NA, 18-35: 4.00, 35-50: 3.00, 50+: NA
+The Matrix (1999)	0-18: NA, 18-35: 3.75, 35-50: NA, 50+: NA
+The Lord of the Rings: The Fellowship of the Ring (2001)	0-18: NA, 18-35: 4.00, 35-50: 4.50, 50+: NA
+The Lord of the Rings: The Two Towers (2002)	0-18: NA, 18-35: 3.00, 35-50: 4.50, 50+: NA
+The Lord of the Rings: The Return of the King (2003)	0-18: NA, 18-35: 3.50, 35-50: NA, 50+: NA
+Fight Club (1999)	0-18: NA, 18-35: 4.25, 35-50: NA, 50+: NA
+Se7en (1995)	0-18: NA, 18-35: 3.75, 35-50: NA, 50+: NA
+The Usual Suspects (1995)	0-18: NA, 18-35: 4.25, 35-50: NA, 50+: NA
+Schindler's List (1993)	0-18: NA, 18-35: 4.50, 35-50: NA, 50+: 4.00
+American Beauty (1999)	0-18: NA, 18-35: 4.50, 35-50: 3.00, 50+: NA
+Good Will Hunting (1997)	0-18: NA, 18-35: 4.00, 35-50: 3.00, 50+: NA
+The Social Network (2010)	0-18: NA, 18-35: 4.00, 35-50: 3.50, 50+: NA
+Slumdog Millionaire (2008)	0-18: NA, 18-35: 4.00, 35-50: 4.50, 50+: NA
+Whiplash (2014)	0-18: NA, 18-35: 3.00, 35-50: 4.50, 50+: NA
+La La Land (2016)	0-18: NA, 18-35: 3.00, 35-50: 5.00, 50+: NA
+Inception (2010)	0-18: NA, 18-35: 3.75, 35-50: NA, 50+: NA
+Mad Max: Fury Road (2015)	0-18: NA, 18-35: 4.00, 35-50: NA, 50+: NA
+The Revenant (2015)	0-18: NA, 18-35: 3.50, 35-50: NA, 50+: NA
+The Dark Knight (2008)	0-18: NA, 18-35: 3.00, 35-50: NA, 50+: 4.00
+Gravity (2013)	0-18: NA, 18-35: 4.50, 35-50: 4.00, 50+: NA
+The Wolf of Wall Street (2013)	0-18: NA, 18-35: 4.50, 35-50: 4.00, 50+: NA
+Birdman (2014)	0-18: NA, 18-35: 3.00, 35-50: NA, 50+: NA
+Pulp Fiction (1994)	0-18: NA, 18-35: 4.00, 35-50: NA, 50+: NA
+The Big Short (2015)	0-18: NA, 18-35: 4.50, 35-50: NA, 50+: NA
+Manchester by the Sea (2016)	0-18: NA, 18-35: 4.50, 35-50: 3.50, 50+: NA
+Moonlight (2016)	0-18: NA, 18-35: 4.00, 35-50: 3.00, 50+: NA
+Spotlight (2015)	0-18: NA, 18-35: 4.00, 35-50: 4.50, 50+: NA
+The Imitation Game (2014)	0-18: NA, 18-35: 3.00, 35-50: 4.50, 50+: NA
+Forrest Gump (1994)	0-18: NA, 18-35: 5.00, 35-50: 2.50, 50+: NA
+Dunkirk (2017)	0-18: NA, 18-35: 3.50, 35-50: NA, 50+: NA
+Coco (2017)	0-18: NA, 18-35: 4.25, 35-50: NA, 50+: NA
+Parasite (2019)	0-18: NA, 18-35: 4.00, 35-50: 4.00, 50+: NA
+The Godfather (1972)	0-18: NA, 18-35: 3.50, 35-50: NA, 50+: NA
+Titanic (1997)	0-18: NA, 18-35: 3.00, 35-50: 4.00, 50+: NA
+Star Wars: A New Hope (1977)	0-18: NA, 18-35: 3.00, 35-50: 4.00, 50+: NA
+The Lion King (1994)	0-18: NA, 18-35: 3.50, 35-50: 4.50, 50+: NA
