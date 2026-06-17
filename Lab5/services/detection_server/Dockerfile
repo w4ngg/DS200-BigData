@@ -12,6 +12,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY services/detection_server/requirements.txt /app/requirements.txt
+
+# Install CPU-only PyTorch first. Otherwise pip may pull large CUDA wheels.
+RUN pip install --no-cache-dir \
+    --index-url https://download.pytorch.org/whl/cpu \
+    torch==2.2.2+cpu \
+    torchvision==0.17.2+cpu
+
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY shared /app/shared
