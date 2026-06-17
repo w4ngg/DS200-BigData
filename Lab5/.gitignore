@@ -10,10 +10,6 @@ __pycache__/
 .ruff_cache/
 
 # Runtime data
-data/sample_videos/*
-!data/sample_videos/.gitkeep
-results/screenshots/*
-!results/screenshots/.gitkeep
 results/*.json
 uploads/
 tmp/
@@ -28,6 +24,19 @@ tmp/
 *.jpg
 *.jpeg
 *.png
+
+# Keep curated demo assets in Git.
+!data/sample_videos/
+!data/sample_videos/.gitkeep
+!data/sample_videos/*.mp4
+!data/sample_videos/*.avi
+!data/sample_videos/*.mov
+!data/sample_videos/*.mkv
+!results/screenshots/
+!results/screenshots/.gitkeep
+!results/screenshots/*.jpg
+!results/screenshots/*.jpeg
+!results/screenshots/*.png
 
 # Docker/local state
 minio_data/
