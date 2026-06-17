@@ -1,0 +1,152 @@
+x-app-env: &app-env
+  FRAME_TOPIC: ${FRAME_TOPIC:-camera.frames.raw}
+  DETECTION_TOPIC: ${DETECTION_TOPIC:-camera.detections.raw}
+  MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-minioadmin}
+  MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-minioadmin}
+  MINIO_BUCKET: ${MINIO_BUCKET:-people-counting}
+  MINIO_SECURE: ${MINIO_SECURE:-false}
+  MONGODB_URI: ${MONGODB_URI:-}
+  MONGODB_DATABASE: ${MONGODB_DATABASE:-people_counting}
+  MODEL_NAME: ${MODEL_NAME:-yolov8n.pt}
+  MODEL_DEVICE: ${MODEL_DEVICE:-cpu}
+  MODEL_IMAGE_SIZE: ${MODEL_IMAGE_SIZE:-640}
+  SAMPLE_FPS: ${SAMPLE_FPS:-1}
+  RESIZE_WIDTH: ${RESIZE_WIDTH:-640}
+  SAVE_ANNOTATED_FRAMES: ${SAVE_ANNOTATED_FRAMES:-true}
+  MAX_FRAMES: ${MAX_FRAMES:-}
+  UPLOAD_DIR: ${UPLOAD_DIR:-/tmp/people-counting/uploads}
+  SAMPLE_VIDEO_DIR: ${SAMPLE_VIDEO_DIR:-/app/data/sample_videos}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+services:
+  kafka:
+    image: bitnamilegacy/kafka:3.7.0
+    container_name: people-counting-kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_CFG_NODE_ID: "1"
+      KAFKA_CFG_PROCESS_ROLES: "broker,controller"
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: "1@kafka:9093"
+      KAFKA_CFG_LISTENERS: "INTERNAL://:29092,EXTERNAL://:9092,CONTROLLER://:9093"
+      KAFKA_CFG_ADVERTISED_LISTENERS: "INTERNAL://kafka:29092,EXTERNAL://localhost:9092"
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: "INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT"
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: "INTERNAL"
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+      KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: "true"
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:RELEASE.2024-07-16T23-46-41Z
+    container_name: people-counting-minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:-minioadmin}
+    volumes:
+      - minio_data:/data
+
+  camera-server:
+    build:
+      context: .
+      dockerfile: services/camera_server/Dockerfile
+    container_name: people-counting-camera-server
+    environment:
+      <<: *app-env
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      MINIO_ENDPOINT: minio:9000
+      STORAGE_SERVER_URL: http://storage-server:8003
+    ports:
+      - "8001:8001"
+    depends_on:
+      kafka:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      storage-server:
+        condition: service_started
+
+  detection-server:
+    build:
+      context: .
+      dockerfile: services/detection_server/Dockerfile
+    container_name: people-counting-detection-server
+    environment:
+      <<: *app-env
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      MINIO_ENDPOINT: minio:9000
+      MODEL_DEVICE: cpu
+    depends_on:
+      kafka:
+        condition: service_healthy
+      minio:
+        condition: service_started
+
+  storage-server:
+    build:
+      context: .
+      dockerfile: services/storage_server/Dockerfile
+    container_name: people-counting-storage-server
+    environment:
+      <<: *app-env
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      MINIO_ENDPOINT: minio:9000
+    ports:
+      - "8003:8003"
+    depends_on:
+      kafka:
+        condition: service_healthy
+      minio:
+        condition: service_started
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: services/dashboard/Dockerfile
+    container_name: people-counting-dashboard
+    environment:
+      <<: *app-env
+      CAMERA_SERVER_URL: http://camera-server:8001
+      STORAGE_SERVER_URL: http://storage-server:8003
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data/sample_videos:/app/data/sample_videos:ro
+    depends_on:
+      - camera-server
+      - storage-server
+
+  gold-aggregator:
+    build:
+      context: .
+      dockerfile: services/storage_server/Dockerfile
+    profiles: ["jobs"]
+    container_name: people-counting-gold-aggregator
+    command: ["python", "-m", "pipelines.python.aggregate_people_count"]
+    environment:
+      <<: *app-env
+      MINIO_ENDPOINT: minio:9000
+    depends_on:
+      minio:
+        condition: service_started
+
+  mongo-local:
+    image: mongo:7
+    profiles: ["mongo-local"]
+    container_name: people-counting-mongo-local
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  minio_data:
+  mongo_data:

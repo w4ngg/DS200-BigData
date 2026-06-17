@@ -1,0 +1,6 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+pymongo[srv]==4.8.0
+kafka-python==2.0.2
+minio==7.2.8
+

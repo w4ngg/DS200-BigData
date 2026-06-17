@@ -1,0 +1,16 @@
+.git
+.env
+.venv
+venv
+__pycache__
+*.pyc
+data/sample_videos/*
+results/screenshots/*
+uploads
+tmp
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.pt
+

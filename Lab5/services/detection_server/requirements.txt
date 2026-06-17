@@ -1,0 +1,6 @@
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+ultralytics==8.3.0
+kafka-python==2.0.2
+minio==7.2.8
+

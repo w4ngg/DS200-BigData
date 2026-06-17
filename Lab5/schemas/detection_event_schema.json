@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DetectionEvent",
+  "type": "object",
+  "required": [
+    "event_id",
+    "run_id",
+    "camera_id",
+    "frame_id",
+    "timestamp_ms",
+    "person_count",
+    "boxes",
+    "model_name",
+    "input_object_key",
+    "detection_object_key",
+    "annotated_object_key",
+    "processed_at"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "run_id": { "type": "string" },
+    "camera_id": { "type": "string" },
+    "frame_id": { "type": "integer", "minimum": 0 },
+    "timestamp_ms": { "type": "number", "minimum": 0 },
+    "person_count": { "type": "integer", "minimum": 0 },
+    "boxes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["class_name", "confidence", "x1", "y1", "x2", "y2"],
+        "properties": {
+          "class_name": { "type": "string" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "x1": { "type": "number" },
+          "y1": { "type": "number" },
+          "x2": { "type": "number" },
+          "y2": { "type": "number" }
+        }
+      }
+    },
+    "model_name": { "type": "string" },
+    "input_object_key": { "type": "string" },
+    "detection_object_key": { "type": "string" },
+    "annotated_object_key": { "type": "string" },
+    "processed_at": { "type": "string" }
+  }
+}
+

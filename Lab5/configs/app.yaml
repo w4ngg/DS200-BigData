@@ -1,0 +1,22 @@
+kafka:
+  frame_topic: camera.frames.raw
+  detection_topic: camera.detections.raw
+
+minio:
+  bucket: people-counting
+  bronze_frames_prefix: bronze/frames
+  silver_detections_prefix: silver/detections
+  silver_annotated_frames_prefix: silver/annotated_frames
+  gold_people_count_prefix: gold/people_count_by_minute
+
+video:
+  sample_fps: 1
+  resize_width: 640
+  max_frames: null
+
+detection:
+  model_name: yolov8n.pt
+  model_device: cpu
+  model_image_size: 640
+  save_annotated_frames: true
+

@@ -1,0 +1,2 @@
+"""Camera ingestion service."""
+
